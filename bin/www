@@ -22,13 +22,24 @@ app.set('port', port)
 const server = http.createServer(app)
 
 /**
+ * Set up the environment
+ */
+let ENV = ''
+
+if (process.env.NODE_ENV === 'production') {
+  ENV = process.env.DB_PROD
+} else {
+  ENV = process.env.DB_DEV
+}
+
+/**
  * Set up the MongoDB server.
  */
 // mongoose set up
 mongoose.set('strictQuery', true)
 mongoose.Promise = global.Promise
 mongoose
-  .connect(process.env.DB_DEV, {
+  .connect(ENV, {
     useNewUrlParser: true,
   })
   .then(() => {

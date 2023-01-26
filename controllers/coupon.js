@@ -58,7 +58,11 @@ export const getCouponByName = (req, res, next) => {
   query.where({ name })
   query.exec((err, coupons) => {
     if (err) return next(err)
-    res.send(coupons)
+    if (coupons.length) {
+      res.send(coupons)
+    } else {
+      res.status(404).json({ message: 'No coupons found.' })
+    }
   })
 }
 
