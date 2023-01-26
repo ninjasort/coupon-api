@@ -22,7 +22,7 @@ from the existing items in shopping cart.
 ## Installation
 
 ```
-git clone
+git clone https://github.com/ninjasort/coupon-api.git
 
 npm install
 ```
